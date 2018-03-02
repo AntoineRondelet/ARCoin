@@ -19,7 +19,7 @@ loadScript('standardToken.js')
 var tokenABI = tokenCompilationOutput.contracts['ERC20-token/StandardToken.sol:StandardToken'].abi
 var tokenBin = "0x" + tokenCompilationOutput.contracts['ERC20-token/StandardToken.sol:StandardToken'].bin
 var deployTransationObject = { from: eth.accounts[0], data: tokenBin, gas: 1000000 };
-var tokenContract = eth.contract(JSON.parse(tokenABI));
+var arcoinContract = eth.contract(JSON.parse(tokenABI));
 
 personal.unlockAccount(eth.accounts[0]);
 
@@ -27,19 +27,20 @@ var tokenName = "AR Coin";
 var tokenSymbol = "ARX";
 var tokenDecimals = 7;
 var tokenTotalSupply = 1000000000;
-var tokenInstance=tokenContract.new(tokenName,tokenSymbol,tokenDecimals,tokenTotalSupply,deployTransationObject,function(n,o){n?console.log(n):o.address?(console.log("Contract mined! Address: "+o.address),console.log(o)):console.log("Contract transaction send: TransactionHash: "+o.transactionHash+" waiting to be mined...")});
+var arcoinInstance=arcoinContract.new(tokenName,tokenSymbol,tokenDecimals,tokenTotalSupply,deployTransationObject,function(n,o){n?console.log(n):o.address?(console.log("Contract mined! Address: "+o.address),console.log(o)):console.log("Contract transaction send: TransactionHash: "+o.transactionHash+" waiting to be mined...")});
 
-var token = tokenContract.at(tokenInstance.address);
+var arcoin = tokenContract.at(tokenInstance.address);
 ```
 
 The token is created at this stage ! The account `eth.accounts[0]` should been credited of 100 ARX.
 Verify it by running:
 ```bash
-token.balanceOf(eth.accounts[0]);
+arcoin.balanceOf(eth.accounts[0]);
 ```
 
 ## Resources
 
+- https://theethereum.wiki/w/index.php/ERC20_Token_Standard
 - https://github.com/OpenZeppelin/zeppelin-solidity
 - https://solidity.readthedocs.io/en/develop/
 - https://github.com/ConsenSys/smart-contract-best-practices/tree/master/docs
