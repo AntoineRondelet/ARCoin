@@ -4,9 +4,9 @@ import './SafeMath.sol';
 import './ERC20.sol';
 
 /*
- * StandardToken inherits from the ERC20 interface
+ * ARXToken inherits from the ERC20 interface
 **/
-contract StandardToken is ERC20 {
+contract ARXToken is ERC20 {
     /*
      * using [Library] for B; is used to attach library functions (from the library) to any type (B). 
      * These functions will receive the object they are called on as their first parameter (like the self variable in Python).
@@ -25,7 +25,7 @@ contract StandardToken is ERC20 {
     /*
      * Constructor
     **/
-    function StandardToken(string name, string symbol, uint8 decimals, uint256 totalSupply) public {
+    function ARXToken(string name, string symbol, uint8 decimals, uint256 totalSupply) public {
         _symbol = symbol;
         _name = name;
         _decimals = decimals;
@@ -123,5 +123,12 @@ contract StandardToken is ERC20 {
         }
         Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
         return true;
+    }
+
+    /*
+     * Refuse and sends back any ETH
+    **/
+    function () public payable {
+        revert();
     }
 }

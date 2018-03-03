@@ -6,18 +6,18 @@ Project done to play around with solidity, and ERC-20/ERC-223 tokens
 
 1. Compile the contracts
 ```bash
-echo "var tokenCompilationOutput=`solc --optimize --combined-json abi,bin,interface ERC20-token/StandardToken.sol`" > standardToken.js
+echo "var tokenCompilationOutput=`solc --optimize --combined-json abi,bin,interface ERC20-token/ARXToken.sol`" > arxToken.js
 ```
 _Note:_ We can get generate the ABIs of the contracts in separate files, using:
 ```bash
-solcjs --abi ERC20-token/SafeMath.sol ERC20-token/ERC20.sol ERC20-token/StandardToken.sol
+solcjs --abi ERC20-token/SafeMath.sol ERC20-token/ERC20.sol ERC20-token/ARXToken.sol
 ```
 2. Start the geth testnet (Follow the instructions in eth-private-net)
 3. In geth, run:
 ```
-loadScript('standardToken.js')
-var tokenABI = tokenCompilationOutput.contracts['ERC20-token/StandardToken.sol:StandardToken'].abi
-var tokenBin = "0x" + tokenCompilationOutput.contracts['ERC20-token/StandardToken.sol:StandardToken'].bin
+loadScript('arxToken.js')
+var tokenABI = tokenCompilationOutput.contracts['ERC20-token/ARXToken.sol:ARXToken'].abi
+var tokenBin = "0x" + tokenCompilationOutput.contracts['ERC20-token/ARXToken.sol:ARXToken'].bin
 var deployTransationObject = { from: eth.accounts[0], data: tokenBin, gas: 1000000 };
 var arcoinContract = eth.contract(JSON.parse(tokenABI));
 
