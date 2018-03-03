@@ -2,6 +2,21 @@
 
 Project done to play around with solidity, and ERC-20/ERC-223 tokens
 
+## Environment
+
+- Geth:
+```bash
+Version: 1.8.1-stable
+```
+- Npm:
+```bash
+5.6.0
+```
+- Solc:
+```bash
+Version: 0.4.20
+```
+
 ## Deploy the Token to the testnet (using Geth)
 
 1. Compile the contracts
